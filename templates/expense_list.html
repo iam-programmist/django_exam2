@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense List</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <h2>Your Expenses</h2>
+    <a href="{% url 'create_expense' %}">Add New Expense</a>
+    <div class="container">
+        {% for expense in expenses %}
+            <div class="div1">
+                {{ expense.date }} - {{ expense.category }}: ${{ expense.amount }}
+                <a href="{% url 'update_expense' expense.id %}">Edit</a>
+                <a href="{% url 'delete_expense' expense.id %}">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
